@@ -1,87 +1,78 @@
-// ===== Moment 1 — canvas frame-scrub hero =====
-(function initHeroScrub() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+// ===== Moment 1 — hero video: autoplay once, pause on end, replay on re-entry after scroll-exit =====
+(function initHeroVideo() {
+  const hero = document.getElementById('hero');
+  const video = document.getElementById('heroVideo');
+  if (!hero || !video) return;
 
-  // Config: frame count matches FFmpeg extraction (97 frames @ 24fps × 4.06s V2 hero.mp4).
-  // NOTE: update this constant when swapping in any new hero.mp4 — match `ls assets/frames/ | wc -l`.
-  const FRAME_COUNT = 97;
-  const FRAME_PATH = (i) => `assets/frames/frame_${String(i).padStart(4, '0')}.jpg`;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const frames = new Array(FRAME_COUNT);
-  let loaded = 0;
-  let currentIdx = -1;
+  // Reveal text overlay + scrim at the V2 white-flash timing (2.4s into playback).
+  // The text only appears against the aloe end scene — never over the white opening.
+  const REVEAL_MS = 2400;
+  let revealTimer = null;
 
-  const sizeCanvas = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
-    canvas.style.width = window.innerWidth + 'px';
-    canvas.style.height = window.innerHeight + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const reveal = () => hero.classList.add('is-revealed');
+  const unreveal = () => hero.classList.remove('is-revealed');
+
+  const scheduleReveal = () => {
+    clearTimeout(revealTimer);
+    revealTimer = setTimeout(reveal, REVEAL_MS);
   };
 
-  const drawFrame = (idx) => {
-    const img = frames[idx];
-    if (!img || !img.complete) return;
-    const cw = window.innerWidth;
-    const ch = window.innerHeight;
-    const ir = img.naturalWidth / img.naturalHeight;
-    const cr = cw / ch;
-    let dw, dh, dx, dy;
-    if (cr > ir) { dw = cw; dh = cw / ir; dx = 0; dy = (ch - dh) / 2; }
-    else        { dh = ch; dw = ch * ir; dy = 0; dx = (cw - dw) / 2; }
-    ctx.clearRect(0, 0, cw, ch);
-    ctx.drawImage(img, dx, dy, dw, dh);
-  };
-
-  const preload = () => new Promise(resolve => {
-    for (let i = 1; i <= FRAME_COUNT; i++) {
-      const img = new Image();
-      img.src = FRAME_PATH(i);
-      img.onload = img.onerror = () => {
-        loaded++;
-        if (loaded === FRAME_COUNT) resolve();
-      };
-      frames[i - 1] = img;
+  const playFromStart = () => {
+    try { video.currentTime = 0; } catch (_) {}
+    unreveal();
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+      playPromise.then(scheduleReveal).catch(() => {
+        // Autoplay blocked (rare with muted+playsinline). Show the last frame + reveal text.
+        try { video.currentTime = video.duration || 0; } catch (_) {}
+        reveal();
+      });
+    } else {
+      scheduleReveal();
     }
+  };
+
+  // Pause on end — do NOT loop. Last frame stays on screen.
+  video.addEventListener('ended', () => {
+    video.pause();
+    // Ensure the reveal state is on even if the user's browser ate the timer.
+    reveal();
   });
 
-  const start = async () => {
-    sizeCanvas();
-    await preload();
-    drawFrame(0);
+  // Reduced motion: skip playback entirely, show a static still + text immediately.
+  // CSS handles the fallback image on `.hero.is-reduced`.
+  if (reducedMotion) {
+    hero.classList.add('is-reduced', 'is-revealed');
+    video.removeAttribute('autoplay');
+    video.pause();
+    return;
+  }
 
-    const initScroll = () => {
-      if (!window.gsap || !window.ScrollTrigger) { requestAnimationFrame(initScroll); return; }
-      gsap.registerPlugin(ScrollTrigger);
+  // Kick off initial playback once the video has decodable data.
+  const kickOff = () => playFromStart();
+  if (video.readyState >= 2) {
+    kickOff();
+  } else {
+    video.addEventListener('loadeddata', kickOff, { once: true });
+  }
 
-      const progress = { v: 0 };
-      const render = () => {
-        const idx = Math.min(FRAME_COUNT - 1, Math.max(0, Math.round(progress.v * (FRAME_COUNT - 1))));
-        if (idx !== currentIdx) { currentIdx = idx; drawFrame(idx); }
-      };
-
-      ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.4,
-        onUpdate: (self) => { progress.v = self.progress; render(); }
-      });
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        progress.v = 1; render();
+  // Replay on re-entry after scroll-exit.
+  // Rule: once the hero leaves viewport (past threshold 0.5), the next re-entry resets
+  // playback from frame 0. If user stays on the hero or barely scrolls, no reset.
+  let hasExitedSinceLastPlay = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        hasExitedSinceLastPlay = true;
+      } else if (hasExitedSinceLastPlay) {
+        hasExitedSinceLastPlay = false;
+        playFromStart();
       }
-    };
-    initScroll();
-
-    window.addEventListener('resize', () => { sizeCanvas(); drawFrame(currentIdx); }, { passive: true });
-  };
-
-  if (document.readyState === 'complete') start();
-  else window.addEventListener('load', start);
+    });
+  }, { threshold: 0.5 });
+  observer.observe(hero);
 })();
 
 // ===== Moment 2 — UltraAloe brand story staged reveal =====

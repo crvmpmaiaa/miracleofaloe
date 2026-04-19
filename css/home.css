@@ -293,54 +293,104 @@
   .email-capture__panel { grid-template-columns: 1fr; }
 }
 
-/* ===== Cinematic hero — Moment 1 ===== */
+/* ===== Hero — autoplay-once video with 2.4s-delayed text reveal ===== */
 .hero {
   position: relative;
-  height: 320vh; /* tall scroll container; canvas is pinned */
-}
-.hero__canvas-wrap {
-  position: sticky;
-  top: 0;
-  width: 100%;
   height: 100vh;
-  background: var(--color-paper);
+  min-height: 600px;
   overflow: hidden;
+  background: var(--color-forest);
 }
-.hero__canvas { width: 100%; height: 100%; display: block; }
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  /* Make sure first frame (pure white) shows instantly before playback kicks in */
+  background: #fff;
+}
+/* Scrim: forest-tinted gradient anchored bottom-left (where text sits), fades to transparent upper-right.
+   Opacity 0 until .is-revealed class is set by home.js at 2.4s (post-white-flash). */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 900ms var(--ease-out);
+  background:
+    linear-gradient(135deg, rgba(15, 59, 44, 0.62) 0%, rgba(15, 59, 44, 0.20) 45%, transparent 70%),
+    linear-gradient(0deg, rgba(15, 59, 44, 0.25) 0%, transparent 35%);
+}
+.hero.is-revealed .hero__scrim { opacity: 1; }
 
 .hero__overlay {
-  position: absolute; inset: 0;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(60px, 10vh, 120px);
   pointer-events: none;
 }
-.hero__overlay .container { pointer-events: auto; }
+.hero__overlay .container { pointer-events: auto; width: 100%; }
 .hero__inner {
-  position: sticky; top: 0;
-  height: 100vh;
-  display: flex; flex-direction: column; justify-content: center;
-  max-width: 920px;
-  padding-top: clamp(24px, 5vh, 60px);
+  max-width: 640px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
 }
-.hero__inner .mono { margin-bottom: 20px; color: var(--color-muted); }
-.hero h1 { max-width: 14ch; }
-.hero h1 em { font-style: italic; color: var(--color-jungle); }
-.hero__actions { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+.hero.is-revealed .hero__inner {
+  opacity: 1;
+  transform: none;
+}
+.hero__inner .mono { margin-bottom: 18px; color: rgba(246, 242, 234, 0.75); }
+.hero h1 {
+  color: var(--color-paper);
+  max-width: 14ch;
+  text-shadow: 0 2px 28px rgba(15, 59, 44, 0.4);
+  font-size: clamp(44px, 5.6vw, 80px);
+}
+.hero h1 em { font-style: italic; color: var(--color-aloe); }
+.hero__actions { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
 
 .hero__scrollhint {
   position: absolute;
-  bottom: 32px; left: 50%;
+  bottom: 28px;
+  left: 50%;
   transform: translateX(-50%);
-  color: var(--color-muted);
+  color: rgba(246, 242, 234, 0.75);
   font-size: 10px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
   animation: hint 2.4s ease-in-out infinite;
 }
+.hero.is-revealed .hero__scrollhint { opacity: 1; }
+
 @keyframes hint {
-  0%, 100% { transform: translate(-50%, 0); opacity: 0.4; }
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.35; }
   50% { transform: translate(-50%, 6px); opacity: 1; }
 }
-@media (prefers-reduced-motion: reduce) { .hero__scrollhint { animation: none; } }
 
-@media (max-width: 860px) {
-  .hero { height: 260vh; }
+/* Reduced-motion: skip video, fall back to the brand-hero still + reveal text instantly.
+   Canvas element in DOM is hidden via `display: none` on the video; background fills the frame. */
+.hero.is-reduced .hero__video { display: none; }
+.hero.is-reduced {
+  background-image: url('../assets/stills/brand-hero.jpg');
+  background-size: cover;
+  background-position: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__scrollhint { animation: none; }
+  .hero__inner, .hero__scrim, .hero__scrollhint { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .hero__inner { max-width: 100%; }
+  .hero h1 { font-size: clamp(36px, 10vw, 56px); }
 }
 
 /* ===== UltraAloe brand story — Moment 2 ===== */
