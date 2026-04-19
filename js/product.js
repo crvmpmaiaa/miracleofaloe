@@ -91,3 +91,22 @@ document.querySelectorAll('input[name="plan"]').forEach(r => r.addEventListener(
   update();
   range.addEventListener('input', update);
 })();
+
+// ===== Review tag filter =====
+(function initReviewTags() {
+  const grid = document.getElementById('reviewGrid');
+  const buttons = document.querySelectorAll('.pdp-reviews__tags .tag');
+  if (!grid || !buttons.length) return;
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const t = btn.dataset.tag;
+      grid.querySelectorAll('.pdp-review').forEach(r => {
+        if (t === 'all') { r.classList.remove('is-hidden'); return; }
+        const tags = (r.dataset.tags || '').split(/\s+/);
+        r.classList.toggle('is-hidden', !tags.includes(t));
+      });
+    });
+  });
+})();
