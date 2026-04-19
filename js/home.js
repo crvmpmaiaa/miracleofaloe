@@ -100,11 +100,18 @@
       start: 'top top',
       end: 'bottom bottom',
       scrub: 0.2,
+      invalidateOnRefresh: true,
       onUpdate: (self) => {
         const idx = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
         setActive(idx);
       }
     });
+
+    // Refresh after initial layout settles (hero video load + first paint can shift things).
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener('load', () => setTimeout(refresh, 120));
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) heroVideo.addEventListener('loadedmetadata', () => setTimeout(refresh, 80));
   };
   initScroll();
 })();
