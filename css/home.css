@@ -182,18 +182,27 @@
 .review--feature cite { color: rgba(246,242,234,0.7); }
 .review cite .mono { font-size: 10px; }
 
-.review--stat { background: var(--color-aloe); text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
+.review--stat {
+  background: var(--color-aloe);
+  text-align: center;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  grid-column: span 2; /* mirror the forest feature card on row 1 for balance */
+}
 .review--stat .mono { color: rgba(26,31,28,0.6); }
 .review__bignum { font-family: var(--font-serif); font-size: clamp(72px, 8vw, 120px); line-height: 0.9; }
 .review__bignum em { font-style: italic; }
 
 @media (max-width: 960px) {
   .reviews__grid { grid-template-columns: repeat(2, 1fr); }
-  .review--feature { grid-column: span 2; }
+  .review--feature,
+  .review--stat { grid-column: span 2; }
 }
 @media (max-width: 560px) {
   .reviews__grid { grid-template-columns: 1fr; }
-  .review--feature { grid-column: span 1; }
+  .review--feature,
+  .review--stat { grid-column: span 1; }
 }
 
 /* ===== Best sellers (§10) ===== */
