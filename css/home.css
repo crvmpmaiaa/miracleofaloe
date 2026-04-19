@@ -408,28 +408,40 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  min-height: 0;
   display: grid;
   grid-template-columns: 5fr 7fr;
   align-items: center;
-  gap: clamp(32px, 6vw, 96px);
-  padding: clamp(40px, 8vh, 80px) var(--gutter);
+  gap: clamp(32px, 5vw, 72px);
+  padding: clamp(32px, 5vh, 64px) var(--gutter);
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.process__header { max-width: 460px; }
-.process__headline { color: var(--color-paper); margin: 20px 0 24px; }
+.process__header { max-width: 460px; align-self: center; }
+.process__headline {
+  color: var(--color-paper);
+  margin: 16px 0 18px;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.02;
+}
 .process__headline em { font-style: italic; color: var(--color-aloe); }
-.process__lede { color: rgba(246, 242, 234, 0.72); max-width: 44ch; }
+.process__lede { color: rgba(246, 242, 234, 0.72); max-width: 44ch; font-size: clamp(15px, 1.2vw, 18px); }
 
 .process__steps {
   position: relative;
   list-style: none; padding: 0; margin: 0;
   height: 100%;
+  min-height: 0;
+  align-self: stretch;
 }
 .process__step {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 16px;
+  /* Label (auto) | Media fills remaining (1fr, shrinkable) | Title (auto) | Body (auto) */
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 12px;
+  min-height: 0;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 600ms var(--ease-out), transform 800ms var(--ease-out);
@@ -442,7 +454,9 @@
 }
 .process__step .mono { color: var(--color-aloe); }
 .process__media {
-  aspect-ratio: 4 / 3;
+  /* No aspect-ratio — let the 1fr grid track dictate height. min-height: 0 permits shrinking. */
+  min-height: 0;
+  width: 100%;
   border-radius: var(--radius-card);
   background-size: cover;
   background-position: center;
@@ -455,10 +469,16 @@
 
 .process__step h3 {
   color: var(--color-paper);
-  font-size: clamp(28px, 3vw, 44px);
-  margin-top: 8px;
+  font-size: clamp(24px, 2.6vw, 36px);
+  line-height: 1.1;
+  margin-top: 4px;
 }
-.process__step p { color: rgba(246,242,234,0.72); max-width: 50ch; }
+.process__step p {
+  color: rgba(246,242,234,0.72);
+  max-width: 50ch;
+  font-size: clamp(14px, 1.05vw, 15.5px);
+  line-height: 1.5;
+}
 
 @media (max-width: 960px) {
   .process__pin { height: auto; }
