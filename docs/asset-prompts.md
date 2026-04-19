@@ -140,29 +140,41 @@ Single editorial photograph: a fresh aloe plant in a simple terracotta pot on a 
 
 ---
 
-## HERO VIDEO (Seedance, image-to-video)
+## HERO VIDEO (Seedance, image-to-video) — V2
 
-The hero is a ~4-second scroll-scrubbable video. Seedance needs a **first frame** and a **last frame** plus a motion directive. Generate both frames in Nano Banana first, then paste into Seedance.
+**V2 concept:** aloe leaf → slice → gel glow → **white flash** → reveal a lush aloe-themed end scene (no product, no jar). The end scene is a cinematic aloe "destination" shot with built-in negative space for text overlay, and the flash gives the reveal a clean, premium-cinematic edit point rather than a slow product-ad dissolve.
+
+Seedance needs a **first frame** and a **last frame** plus a motion directive. Generate both frames in Nano Banana first, then paste into Seedance.
 
 ### HERO FIRST FRAME — Nano Banana (`hero-first.jpg`)
 
-```
-Centred composition: a single fresh aloe vera leaf placed flat on a seamless pure-white studio background, subject dead-centre. The leaf is whole, uncut, sharp and fresh. Studio product lighting from above and slightly in front, soft diffused shadow directly beneath the leaf (very short, tight to the subject — indicates studio light, not natural). ZERO other objects, ZERO text, ZERO watermark. Ultra-sharp focus across the whole leaf, shot on 50mm at f/8. The first frame of a scroll-driven hero video — critical requirement: background is ≥95% pure white pixel mass, luminance YAVG > 240. Palette: white + aloe green + the barest hint of warm neutral shadow. 1920×1080 landscape. This is a hero frame, not a scene.
-```
-
-### HERO LAST FRAME — Nano Banana (`hero-last.jpg`)
-
-**Reference: `assets/products/foot-repair-front.png`** (attach — the Foot Repair bottle that becomes the payoff)
+Unchanged from V1. If you've already generated this frame and YAVG > 230, keep reusing it — no need to regenerate.
 
 ```
-Use the attached reference for the product. Preserve the Foot Repair bottle's exact shape, pump, label layout, colours, brand typography, and all graphics pixel-accurate. Only the scene around it changes.
-
-Scene: the Foot Repair bottle resting on a warm raw-linen surface, morning natural light coming from the top-right, soft long shadow to the bottom-left. Bottle is tack-sharp in focus, fills roughly 40% of the frame height, placed slightly above the lower third. Background: linen fabric with subtle folds and grain, slightly out of focus. Composition deliberate and calm — this is the payoff shot after the scroll animation. Palette: cream + warm linen + aloe-green label accent. 1920×1080 landscape. Photorealistic, editorial.
+Centred composition: a single fresh aloe vera leaf placed flat on a seamless pure-white studio background, subject dead-centre. The leaf is whole, uncut, sharp and fresh. Studio product lighting from above and slightly in front, soft diffused shadow directly beneath the leaf (very short, tight to the subject — indicates studio light, not natural). ZERO other objects, ZERO text, ZERO watermark. Ultra-sharp focus across the whole leaf, shot on 50mm at f/8. The first frame of a hero video — critical requirement: background is ≥95% pure white pixel mass, luminance YAVG > 240. Palette: white + aloe green + the barest hint of warm neutral shadow. 1920×1080 landscape. This is a hero frame, not a scene.
 ```
 
-### SEEDANCE MOTION PROMPT
+### HERO LAST FRAME — Nano Banana (`hero-last.jpg`) ⟵ NEW
 
-Paste this into Seedance with `hero-first.jpg` as the start frame and `hero-last.jpg` as the end frame:
+**Reference: NONE.** This is an ambient scene, not a product shot — do NOT attach any product photo.
+
+```
+Scene: a dense, editorial aloe plant composition — either (a) a garden of mature aloe plants shot at golden hour with warm backlight catching the leaf ridges, OR (b) a macro arrangement of 3–4 aloe leaves overlapping naturally against a soft-focus warm-green background. The plant is the subject; the shot feels like a quiet destination, not a product reveal. No humans, no hands, no products, no typography, no logos.
+
+Lighting: warm golden-hour natural light from the upper-right, long soft shadows, highlights on the cut edges and leaf ridges glowing aloe-green. A subtle warm bloom on the ridges.
+
+Composition: plant mass occupies roughly 60–70% of the frame (upper-right and right-of-centre primarily). Leave the BOTTOM-LEFT third softer, lower-contrast, and out-of-focus so a serif headline overlay reads cleanly there — but keep it as a natural continuation of the scene (same palette, slightly more bokeh), NOT an empty void or solid colour block.
+
+Palette: warm amber-green + deep aloe green + cream highlights + faint warm-neutral sky if visible. Colour palette locked to #F6F2EA paper cream + #0F3B2C deep forest + #8DC735 aloe + warm golden light. No synthetic neons.
+
+Style: editorial botanical photography, shot on 50mm at f/2.8 for dreamy shallow depth of field, 35mm film grain, slightly desaturated. Cinematic, not stock. 1920×1080 landscape.
+
+Output filename: hero-last.jpg (replaces the previous version that showed the Foot Repair jar — delete the old one).
+```
+
+### SEEDANCE MOTION PROMPT ⟵ NEW
+
+Paste this into Seedance with `hero-first.jpg` as the start frame and the NEW `hero-last.jpg` as the end frame:
 
 ```
 Image-to-video, 4 seconds at 24fps, 1920×1080.
@@ -170,18 +182,24 @@ Image-to-video, 4 seconds at 24fps, 1920×1080.
 Motion sequence:
 0.0s – 0.4s: hold on the aloe leaf, extremely subtle breathing (0.5% scale oscillation), no other movement.
 0.4s – 1.6s: a thin blade enters cleanly from the right side of the frame and makes a single slow slice lengthwise down the centre of the leaf. No violence, no flashes, no particles — just a clean, considered cut. The two halves part gently by 2–3 pixels.
-1.6s – 2.4s: the inner gel catches a gentle beam of light. A soft white-to-cream glow pulses across the exposed fillet surface (not a lens flare — a soft highlight shift, as though the angle of light just changed).
-2.4s – 3.4s: the entire frame dissolves — the aloe halves, the white background, and the exposed gel all fade together into the linen-and-Foot-Repair-jar composition (the hero-last.jpg end frame). A slow simultaneous crossfade, no hard cut.
-3.4s – 4.0s: hold on the finished composition — the jar on linen in warm natural light. Very subtle camera breathing on the hold, nothing more.
+1.6s – 2.2s: the inner gel catches a gentle beam of light. A soft white-to-cream glow pulses across the exposed fillet surface. The glow intensifies sharply over the last 0.2s.
+2.2s – 2.4s: WHITE FLASH — the glow blows out to a full-white frame for 2–3 frames (≈80–125ms). Clean, cinematic, like a camera flash or a momentary overexposure. No staged particle effect, no lens flare — just a peak-exposure moment.
+2.4s – 3.0s: from the white flash, rapidly reveal the new aloe-themed end scene (match hero-last.jpg). The reveal is a fast 0.5s reverse-exposure: pure white → the aloe scene materialises through increasing saturation and contrast, like eyes adjusting after looking at the sun. No crossfade — an exposure recovery.
+3.0s – 4.0s: hold on the aloe-themed end scene with a very subtle 1.02x → 1.00x slow zoom-out and ambient breathing on the leaves. The frame settles into its final composition.
 
-Style: seamless single take, no cuts, no zoom snaps, no lens flares. Natural physics. Slow and considered — this is a premium brand cinematic, not an ad with punchy editing. Colour grade continuous from frame 1 to frame N (warm cream with aloe-green accents).
+Style: seamless, cinematic. The white flash is the ONE dramatic moment — everything else is slow and considered. No secondary cuts, no conventional lens flares, no text overlays, no particle effects. Natural physics throughout.
 
 Hard requirements:
-- First frame stays ≥95% pure white pixel mass (no early drift toward linen).
-- Last frame matches hero-last.jpg pixel-for-pixel composition.
-- No typography in-scene.
-- Smooth crossfade, not a hard cut, between the slice and the reveal.
+- First frame ≥95% pure white pixel mass (no early drift).
+- Last frame matches the NEW hero-last.jpg pixel-for-pixel composition (aloe scene, no product).
+- White flash is INSTANTANEOUS — 2–3 frames, no dissolve through grey.
+- Post-flash reveal is a clean exposure recovery, not a crossfade.
+- End scene is LOOPABLE — last frame should feel like it could cut cleanly back to the first white frame for an autoplay loop without jarring.
+
+Colour grade: warm cream → white flash → warm golden-green end scene.
 ```
+
+⚠ **When you regenerate:** delete the OLD `hero-last.jpg` (Foot Repair jar composition) and the OLD `hero.mp4` from `assets/stills/originals/` and `assets/video/` respectively, so we don't accidentally keep the outdated payoff shot around. I'll re-extract frames + adjust the playback mechanic (see next message) when you drop the new `hero.mp4` in.
 
 ### If Seedance produces a bad output
 
