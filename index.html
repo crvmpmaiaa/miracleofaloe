@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/home.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/home.js" defer></script>
 </head>
 <body>
 <div class="announcement" aria-label="Store announcements">
@@ -53,6 +56,24 @@
 </header>
 
 <main id="main">
+
+<!-- §3 Cinematic hero — Moment 1 -->
+<section class="hero" id="hero" aria-label="Hero">
+  <div class="hero__canvas-wrap">
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  </div>
+  <div class="hero__overlay">
+    <div class="container hero__inner">
+      <p class="mono">America's most-loved aloe skincare</p>
+      <h1>The aloe plant.<br><em>Reformulated</em><br>for forty years.</h1>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#bestsellers">Shop bestsellers →</a>
+        <a class="btn btn--pale" href="products/miracle-foot-repair-cream.html">See Foot Repair</a>
+      </div>
+    </div>
+  </div>
+  <p class="hero__scrollhint mono">scroll to begin</p>
+</section>
 
 <!-- §4 Trust strip -->
 <section class="trust-strip" aria-label="Trust proof">
