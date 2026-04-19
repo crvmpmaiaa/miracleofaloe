@@ -4,9 +4,9 @@
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Config: frame count matches FFmpeg extraction (145 frames @ 24fps × 6s real hero.mp4).
+  // Config: frame count matches FFmpeg extraction (97 frames @ 24fps × 4.06s V2 hero.mp4).
   // NOTE: update this constant when swapping in any new hero.mp4 — match `ls assets/frames/ | wc -l`.
-  const FRAME_COUNT = 145;
+  const FRAME_COUNT = 97;
   const FRAME_PATH = (i) => `assets/frames/frame_${String(i).padStart(4, '0')}.jpg`;
 
   const frames = new Array(FRAME_COUNT);
