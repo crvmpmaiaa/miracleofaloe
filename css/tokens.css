@@ -1,0 +1,52 @@
+:root {
+  /* Palette */
+  --color-paper: #F6F2EA;
+  --color-ink: #1A1F1C;
+  --color-forest: #0F3B2C;
+  --color-aloe: #8DC735;
+  --color-jungle: #00965E;
+  --color-mist: #D8E4D1;
+  --color-muted: #6B6E63;
+
+  /* Type */
+  --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Scale */
+  --size-body: clamp(15px, 1.05vw, 17px);
+  --size-lede: clamp(18px, 1.4vw, 22px);
+  --size-h3: clamp(22px, 2.2vw, 30px);
+  --size-h2: clamp(36px, 4.4vw, 64px);
+  --size-h1: clamp(48px, 6.8vw, 104px);
+  --size-micro: 11px;
+
+  /* Spacing */
+  --gutter: clamp(24px, 5vw, 80px);
+  --max-width: 1280px;
+  --section-pad-y: clamp(80px, 10vw, 160px);
+
+  /* Radius */
+  --radius-card: 24px;
+  --radius-pill: 999px;
+  --radius-sm: 8px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.3, 1);
+  --dur-fast: 180ms;
+  --dur-med: 420ms;
+  --dur-slow: 900ms;
+}
+
+/* Film-grain overlay applied as a utility class */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
