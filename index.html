@@ -10,8 +10,47 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
+<div class="announcement" aria-label="Store announcements">
+  <div class="announcement__marquee">
+    <div class="announcement__track" aria-hidden="true">
+      <span>Free shipping on orders over $50</span><span>·</span>
+      <span>4.9★ from 1,052 reviews</span><span>·</span>
+      <span>Trusted for 40 years</span><span>·</span>
+      <span>Subscribe & save 15%</span><span>·</span>
+      <span>Free shipping on orders over $50</span><span>·</span>
+      <span>4.9★ from 1,052 reviews</span><span>·</span>
+      <span>Trusted for 40 years</span><span>·</span>
+      <span>Subscribe & save 15%</span><span>·</span>
+    </div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="nav__logo" href="/" aria-label="Miracle of Aloe home">
+      <img src="assets/brand/logo.png" alt="Miracle of Aloe" width="160" height="32">
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#pillars">Foot & Hand</a>
+      <a href="#pillars">Body</a>
+      <a href="#pillars">Face & Hair</a>
+      <a href="#pillars">Supplements</a>
+      <a href="#journal">Journal</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="nav__icon" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="nav__icon" aria-label="Account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="nav__icon nav__cart" id="cartBtn" aria-label="Cart, 0 items">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="nav__cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
   <div class="container" style="padding-top: 120px; padding-bottom: 120px;">
     <p class="mono">Design System Smoke Test</p>
     <h1>The aloe plant.<br><em>Reformulated</em> for forty years.</h1>
@@ -25,5 +64,6 @@
       <p class="lede" style="margin-top: 24px;">Serif on forest, mono labels lightened, palette inversion handled by .section--forest.</p>
     </div>
   </section>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
