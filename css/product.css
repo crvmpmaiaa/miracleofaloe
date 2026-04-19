@@ -104,3 +104,104 @@
 .pdp-sticky__info img { width: 48px; height: 48px; object-fit: contain; border-radius: var(--radius-sm); background: var(--color-mist); padding: 6px; flex-shrink: 0; }
 .pdp-sticky__name { font-family: var(--font-serif); font-size: 17px; line-height: 1.1; }
 .pdp-sticky__price { font-size: 11px; margin-top: 4px; }
+
+/* ===== Module 2: Problem ===== */
+.pdp-problem__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.pdp-problem__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-card);
+  background-image: url('../assets/stills/before-heel.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-mist);
+}
+.pdp-problem__copy h2 { margin: 8px 0 22px; }
+.pdp-problem__copy h2 em { font-style: italic; color: var(--color-jungle); }
+
+@media (max-width: 860px) { .pdp-problem__grid { grid-template-columns: 1fr; } }
+
+/* ===== Module 3: Before/After slider ===== */
+.ba-slider {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 960px; margin: 0 auto;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-mist);
+  user-select: none;
+}
+.ba-slider__before, .ba-slider__after {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ba-slider__before { z-index: 2; clip-path: inset(0 50% 0 0); transition: clip-path 80ms linear; }
+.ba-slider__after { z-index: 1; }
+.ba-slider__handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background: var(--color-paper);
+  z-index: 3;
+  pointer-events: none;
+}
+.ba-slider__handle span {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--color-paper);
+  box-shadow: 0 8px 24px rgba(26, 31, 28, 0.2);
+  display: grid; place-items: center;
+}
+.ba-slider__handle span::before {
+  content: "⇄";
+  font-size: 18px;
+  color: var(--color-ink);
+}
+.ba-slider__label { position: absolute; top: 20px; z-index: 4; color: var(--color-paper); mix-blend-mode: difference; }
+.ba-slider__label--before { left: 20px; }
+.ba-slider__label--after { right: 20px; }
+.ba-slider__input {
+  position: absolute; inset: 0;
+  z-index: 5;
+  opacity: 0;
+  cursor: ew-resize;
+  width: 100%; height: 100%;
+  margin: 0;
+}
+.pdp-ba__caveat { text-align: center; margin-top: 24px; color: var(--color-muted); }
+
+/* ===== Module 4: Formula ===== */
+.pdp-formula__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.ingredient-card {
+  background: var(--color-paper);
+  border: 1px solid rgba(26, 31, 28, 0.08);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.ingredient-card__img {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--color-mist) 0%, var(--color-aloe) 200%);
+  display: grid; place-items: center;
+  position: relative;
+}
+.ingredient-card__img .mono { color: rgba(26,31,28,0.6); font-size: 10px; padding: 0 16px; text-align: center; }
+.ingredient-card h3 { padding: 20px 24px 10px; font-size: 22px; }
+.ingredient-card h3 small { font-family: var(--font-mono); font-size: 10px; color: var(--color-muted); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; display: block; margin-top: 4px; }
+.ingredient-card p { padding: 0 24px 24px; font-size: 14px; color: var(--color-muted); }
+
+@media (max-width: 1060px) { .pdp-formula__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .pdp-formula__grid { grid-template-columns: 1fr; } }

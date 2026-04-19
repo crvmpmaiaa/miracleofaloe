@@ -75,3 +75,19 @@ document.querySelectorAll('input[name="plan"]').forEach(r => r.addEventListener(
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update, { passive: true });
 })();
+
+// ===== Before/after slider =====
+(function initBA() {
+  const slider = document.getElementById('baSlider');
+  const range = document.getElementById('baRange');
+  if (!slider || !range) return;
+  const before = slider.querySelector('.ba-slider__before');
+  const handle = document.getElementById('baHandle');
+  const update = () => {
+    const v = Number(range.value);
+    before.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+    handle.style.left = `${v}%`;
+  };
+  update();
+  range.addEventListener('input', update);
+})();
