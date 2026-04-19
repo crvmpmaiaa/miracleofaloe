@@ -62,3 +62,17 @@ window.MOA.setCartCount = (n) => {
   window.MOA.openPopup = open;
   window.MOA.closePopup = close;
 })();
+
+// ===== Inline email capture (§12 on homepage) =====
+(function initInlineEmail() {
+  const form = document.getElementById('emailCaptureForm');
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const input = form.querySelector('input[type="email"]');
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sent — check your inbox ✓';
+    input.disabled = true;
+  });
+})();

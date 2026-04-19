@@ -227,3 +227,68 @@
 
 @media (max-width: 960px) { .bestsellers__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .bestsellers__grid { grid-template-columns: 1fr; } }
+
+/* ===== Brand moment (§11) ===== */
+.brand-moment {
+  position: relative;
+  min-height: 90vh;
+  display: grid; place-items: center;
+  overflow: hidden;
+  color: var(--color-paper);
+}
+.brand-moment__media {
+  position: absolute; inset: 0;
+  background-image: url('../assets/stills/brand-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-forest);
+}
+.brand-moment__media::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(15, 59, 44, 0.35) 0%, rgba(15, 59, 44, 0.55) 100%),
+    radial-gradient(ellipse at center, rgba(15, 59, 44, 0.0) 0%, rgba(15, 59, 44, 0.5) 75%);
+}
+.brand-moment__overlay {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 0 var(--gutter);
+  max-width: 920px;
+}
+.brand-moment blockquote p {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 6.5vw, 92px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-paper);
+  max-width: none;
+}
+.brand-moment em { font-style: italic; color: var(--color-aloe); }
+.brand-moment__overlay .mono { margin-top: 28px; color: rgba(246,242,234,0.6); }
+
+/* ===== Email capture (§12) ===== */
+.email-capture__panel {
+  background: var(--color-mist);
+  border-radius: var(--radius-card);
+  padding: clamp(40px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+.email-capture h2 em { font-style: italic; color: var(--color-jungle); }
+.email-capture__form { display: flex; flex-direction: column; gap: 12px; }
+.email-capture__form input {
+  font: inherit; padding: 16px 20px; font-size: 15px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(26, 31, 28, 0.16);
+  background: #fff;
+}
+.email-capture__form input:focus { outline: 2px solid var(--color-jungle); outline-offset: 2px; }
+.email-capture__form .btn--primary { justify-content: center; }
+.email-capture__disclaimer { font-size: 11px; color: var(--color-muted); margin-top: 6px; }
+
+@media (max-width: 860px) {
+  .email-capture__panel { grid-template-columns: 1fr; }
+}
