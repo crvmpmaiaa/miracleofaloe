@@ -16,10 +16,33 @@ Generation priority, from highest impact / longest lead time:
 Brand: Miracle of Aloe — 40-year family-owned aloe skincare brand. National DTC, no regional references.
 Colour palette locked to: Paper #F6F2EA · Forest #0F3B2C · Aloe #8DC735 · Jungle #00965E · Mist #D8E4D1.
 Aesthetic: Editorial Botanical — warm editorial photography, subtle film grain, macro botanical detail, linen and paper surfaces, soft natural window light.
-Reference direction: Aesop × Farm Rio × a Kinfolk-magazine botanical issue. Premium-without-corporate. Grounded, quiet confidence.
-Forbidden: typography or logos in-scene (all type added in code), corporate stock models smiling at camera, bright synthetic neons outside palette, lens flares, heavy retouching, cluttered compositions, dated early-2010s wellness aesthetic.
-Output: photorealistic, 1:1 or landscape as noted per still, shot on 50mm at f/4–f/8 unless specified, subtle 35mm film grain texture.
+Reference direction: premium DTC botanical — grounded, quiet confidence, premium-without-corporate.
+Forbidden: typography or logos in-scene EXCEPT what already exists on the product packaging in the reference image (keep those intact), corporate stock models smiling at camera, bright synthetic neons outside palette, lens flares, heavy retouching, cluttered compositions.
+Output: photorealistic, landscape or portrait as noted per still, shot on 50mm at f/4–f/8 unless specified, subtle 35mm film grain texture.
 ```
+
+---
+
+## ⚠ HOW TO USE REFERENCE IMAGES (important — read before generating)
+
+Several of the stills below feature specific Miracle of Aloe SKUs (Foot Repair jar, Aloe All Over bottle, etc.). For these, **attach the actual product photo as a reference image in the Nano Banana session** — the file paths are listed next to each prompt. Without references, Nano Banana will invent a generic white jar (which is what happened to you the first time).
+
+Pattern: when a prompt says **Reference: `assets/products/xxx.png`** — in Nano Banana Pro, upload that file as an input image and tell the model something like "keep the product's label design, colour, shape, and proportions pixel-accurate to this reference; only the surrounding scene changes."
+
+You'll find all the product photos already in the repo at `/Users/admin/Desktop/miracleofaloe/assets/products/`:
+- `foot-repair-front.png` — Foot Repair jar (front label)
+- `foot-repair-back.jpg` — Foot Repair jar (back panel)
+- `hand-repair.png` — Hand Repair jar
+- `aloe-all-over.png` — All Over Lotion bottle
+- `miracle-rub.png` — Miracle Rub bottle
+- `all-day-moisturizer.jpg` — All Day Moisturizer bottle
+- `facial-gel.jpg` — Facial Gel tube
+- `ultra-aloe-juice.jpg` — Ultra Aloe Juice bottle
+- `assets/brand/logo.png` — brand wordmark
+
+**Stills that DO need a reference image:** pillar tiles 1–4, ultraaloe-bottle (#8), hero-first, hero-last, spotlight-jar (if generating separately).
+
+**Stills that DON'T need a reference image** (scene/concept only, no specific SKU): ultraaloe-grow, ultraaloe-harvest, ultraaloe-process, before-heel, after-heel, brand-hero.
 
 ---
 
@@ -27,26 +50,42 @@ Output: photorealistic, 1:1 or landscape as noted per still, shot on 50mm at f/4
 
 ### 1. `pillar-foot.jpg` — Foot & Hand collection tile (3:4 portrait)
 
+**Reference: `assets/products/foot-repair-front.png`** (attach to session — this is the Foot Repair pump bottle with the real Miracle of Aloe label)
+
 ```
-Editorial still life: a pair of well-cared-for hands cradling a 32oz white Miracle Foot Repair jar from above, with the jar centred on a raw linen napkin over a pale cream paper surface. Aloe-green painted thumbnails or a single aloe leaf sprig placed beside the jar for a pop of #8DC735. Morning north-window light from the left, soft diffused shadow beneath. Composition: centred, overhead (flat-lay 90°) or ¾ angle, product clearly the hero. Paper + linen + jar only, nothing else in frame. 3:4 portrait.
+Use the attached reference image for the product. Preserve the bottle's exact shape, dimensions, cap style, label layout, label colour, brand typography, and all graphics pixel-accurate to the reference. Only the scene around it changes.
+
+Scene: editorial still life — a pair of well-cared-for hands cradling the Miracle Foot Repair pump bottle from above, with the bottle centred on a raw linen napkin laid over a pale cream paper surface. A single fresh aloe leaf sprig placed beside the bottle for a pop of green. Morning north-window light from the left, soft diffused shadow beneath. Composition: centred, ¾ overhead angle, product clearly the hero. Paper + linen + bottle + aloe sprig only — nothing else in frame. Shot on 50mm at f/4. 3:4 portrait.
 ```
 
 ### 2. `pillar-body.jpg` — Body collection tile (3:4 portrait)
 
+**Reference: `assets/products/aloe-all-over.png`** (attach — this is the Aloe All Over 32oz pump bottle)
+
 ```
-Editorial still life: a 32oz cream pump lotion bottle (white bottle, green label in the Miracle of Aloe palette) standing on a honed marble or travertine bathroom slab, shot from a low ¾ angle. Morning light coming through a sheer linen curtain, casting a soft vertical light across the bottle. A folded white bath towel visible in soft focus background, a sprig of fresh aloe leaf on the counter. Palette: cream, stone, a single hit of aloe-green. Quiet, premium, early-morning feel. 3:4 portrait.
+Use the attached reference for the product. Preserve the bottle's exact shape, pump style, label layout, colours, brand typography, and all graphics pixel-accurate. Only the scene around it changes.
+
+Scene: editorial still life — the Aloe All Over 32oz pump bottle standing on a honed travertine bathroom slab, shot from a low ¾ angle. Morning light through a sheer linen curtain casts a soft vertical light down the bottle. Folded white bath towel in soft-focus background; a sprig of fresh aloe leaf on the counter beside the bottle. Palette: warm stone, cream towel, one aloe-green accent from the leaf. Quiet, premium, early-morning feel. Shot on 50mm at f/4. 3:4 portrait.
 ```
 
 ### 3. `pillar-face.jpg` — Face & Hair collection tile (3:4 portrait)
 
+**Reference: `assets/products/facial-gel.jpg`** (attach — this is the Rehydrating Facial Gel tube/bottle)
+
 ```
-Editorial still life: a small facial gel tube lying on its side on a folded muslin cloth, next to two round cotton pads and a single succulent/aloe leaf tip. Soft-focus greenery (fresh aloe plant) blurred in background. Shot on 85mm, shallow depth of field, product tack-sharp, background dreamy. Palette: mist green, cream, one aloe-green highlight on the leaf. Morning light from the right. Editorial, not clinical. 3:4 portrait.
+Use the attached reference for the product. Preserve the bottle's exact shape, cap, label layout, colours, brand typography, and all graphics pixel-accurate. Only the scene around it changes.
+
+Scene: editorial still life — the Rehydrating Facial Gel lying on its side on a folded muslin cloth next to two round cotton pads and a single aloe leaf tip. Soft-focus fresh aloe plant blurred in background. Shot on 85mm, shallow depth of field — product tack-sharp, background dreamy. Palette: mist green, cream, one aloe-green highlight from the leaf. Morning light from the right. Editorial, not clinical. 3:4 portrait.
 ```
 
 ### 4. `pillar-supps.jpg` — Supplements collection tile (3:4 portrait)
 
+**Reference: `assets/products/ultra-aloe-juice.jpg`** (attach — this is the Ultra Aloe Juice quart bottle)
+
 ```
-Editorial still life: a quart-sized Ultra Aloe Juice bottle (clear glass with green liquid inside) on a reclaimed oak counter, with a small cut-crystal drinking glass half-filled beside it. Fresh aloe leaf fillet on a wooden cutting board just behind. Morning light from the side, warm and honeyed. Composition ¾ angle slightly above. Palette: warm wood brown, aloe green liquid, cream wall behind. Nothing else. 3:4 portrait.
+Use the attached reference for the product. Preserve the bottle's exact shape, cap, label layout, colours, brand typography, and all graphics pixel-accurate. Only the scene around it changes.
+
+Scene: editorial still life — the Ultra Aloe Juice quart bottle on a reclaimed oak counter, with a small cut-crystal drinking glass half-filled with the juice beside it. Fresh aloe leaf fillet on a small wooden cutting board just behind. Morning light from the side, warm and honeyed. Composition ¾ angle slightly above. Palette: warm wood brown, aloe-green liquid, cream wall behind. Nothing else in frame. Shot on 50mm at f/5.6. 3:4 portrait.
 ```
 
 ### 5–8. UltraAloe® Documentary — ⚠ GENERATE AS ONE SESSION
@@ -73,8 +112,12 @@ Documentary photograph: the proprietary process step — a gloved hand (surgical
 
 ### 8. `ultraaloe-bottle.jpg` — Bottle (16:9 landscape)
 
+**Reference: `assets/products/foot-repair-front.png`** (attach — real Foot Repair bottle)
+
 ```
-Documentary photograph: a just-finished white Miracle Foot Repair jar being pumped/dispensed onto a warm folded linen napkin, a small cream ribbon of product curling onto the fabric. The jar is in tight focus mid-frame. The same warm golden grade continues. Hands visible but relaxed — this is the payoff shot, the moment of completion. Shot on 50mm, f/5.6. Palette: cream + warm linen + aloe-green accent (label). 16:9 landscape.
+Use the attached reference for the product. Preserve the Foot Repair bottle's exact shape, pump, label layout, colours, brand typography, and all graphics pixel-accurate. Only the scene around it changes. Continue the same warm golden documentary grade used across stills 5–7.
+
+Scene: documentary photograph — the finished Foot Repair bottle being dispensed onto a warm folded linen napkin, a small cream ribbon of product curling onto the fabric. Bottle in tight focus mid-frame. Same warm golden grade as Grow/Harvest/Process stills. Relaxed hand visible at the pump. Shot on 50mm at f/5.6. Palette: cream + warm linen + aloe-green label accent. 16:9 landscape.
 ```
 
 ### 9. `before-heel.jpg` — Day 1 (16:9 landscape)
@@ -109,8 +152,12 @@ Centred composition: a single fresh aloe vera leaf placed flat on a seamless pur
 
 ### HERO LAST FRAME — Nano Banana (`hero-last.jpg`)
 
+**Reference: `assets/products/foot-repair-front.png`** (attach — the Foot Repair bottle that becomes the payoff)
+
 ```
-Centred composition: a 32oz white Miracle Foot Repair jar resting on a warm raw-linen surface, morning natural light coming from the top-right, soft long shadow to the bottom-left. The jar is tack-sharp in focus, fills roughly 40% of the frame height, placed slightly above the lower third. Background: the linen fabric with subtle folds and grain, slightly out of focus. Composition is deliberate and calm — this is the payoff shot after the scroll animation. Palette: cream + warm linen + aloe-green label accent. 1920×1080 landscape. Photorealistic, editorial.
+Use the attached reference for the product. Preserve the Foot Repair bottle's exact shape, pump, label layout, colours, brand typography, and all graphics pixel-accurate. Only the scene around it changes.
+
+Scene: the Foot Repair bottle resting on a warm raw-linen surface, morning natural light coming from the top-right, soft long shadow to the bottom-left. Bottle is tack-sharp in focus, fills roughly 40% of the frame height, placed slightly above the lower third. Background: linen fabric with subtle folds and grain, slightly out of focus. Composition deliberate and calm — this is the payoff shot after the scroll animation. Palette: cream + warm linen + aloe-green label accent. 1920×1080 landscape. Photorealistic, editorial.
 ```
 
 ### SEEDANCE MOTION PROMPT
