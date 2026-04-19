@@ -67,6 +67,8 @@ button { font: inherit; cursor: pointer; border: 0; background: transparent; col
 }
 .section--forest h1, .section--forest h2, .section--forest h3 { color: var(--color-paper); }
 .section--forest .mono { color: rgba(246, 242, 234, 0.55); }
+.section--forest p { color: rgba(246, 242, 234, 0.82); }
+.section--forest p.lede { color: rgba(246, 242, 234, 0.72); }
 
 .section--mist { background: var(--color-mist); }
 

@@ -7,6 +7,7 @@
   --color-jungle: #00965E;
   --color-mist: #D8E4D1;
   --color-muted: #6B6E63;
+  --color-ink-soft: rgba(26, 31, 28, 0.72);
 
   /* Type */
   --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
@@ -39,7 +40,9 @@
   --dur-slow: 900ms;
 }
 
-/* Film-grain overlay applied as a utility class */
+/* Film-grain overlay applied as a utility class.
+   The `.grain` element itself must create a positioning context — this rule handles it. */
+.grain { position: relative; }
 .grain::after {
   content: "";
   position: absolute;
