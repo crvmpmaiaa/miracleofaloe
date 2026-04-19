@@ -101,3 +101,61 @@
   .spotlight__grid { grid-template-columns: 1fr; gap: 36px; }
   .spotlight__media { aspect-ratio: 1; }
 }
+
+/* ===== Why Aloe Works (§7) ===== */
+.why-aloe__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.why-aloe__media {
+  position: sticky;
+  top: 120px;
+}
+.why-aloe__img {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-card);
+  background-image: url('../assets/stills/ultraaloe-harvest.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-mist);
+}
+
+.why-aloe__benefits { list-style: none; padding: 0; display: flex; flex-direction: column; }
+.why-aloe__benefits li {
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(26, 31, 28, 0.12);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.why-aloe__benefits li:first-child { padding-top: 0; }
+.why-aloe__benefits li:last-child { border-bottom: 0; }
+.why-aloe__benefits h3 { font-size: clamp(22px, 2vw, 30px); max-width: 34ch; }
+.why-aloe__benefits p { font-size: 15px; color: var(--color-muted); max-width: 50ch; }
+
+@media (max-width: 960px) {
+  .why-aloe__grid { grid-template-columns: 1fr; }
+  .why-aloe__media { position: static; }
+  .why-aloe__img { aspect-ratio: 16 / 10; }
+}
+
+/* ===== Benefit marquee ===== */
+.benefit-marquee {
+  background: var(--color-forest);
+  color: var(--color-paper);
+  padding: 22px 0;
+  overflow: hidden;
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 2.6vw, 38px);
+}
+.benefit-marquee__track {
+  display: inline-flex;
+  gap: 32px;
+  white-space: nowrap;
+  animation: marquee 48s linear infinite;
+  padding-left: 100%;
+}
+.benefit-marquee__track .dot { color: var(--color-aloe); }
+@media (prefers-reduced-motion: reduce) {
+  .benefit-marquee__track { animation: none; padding-left: var(--gutter); }
+}
