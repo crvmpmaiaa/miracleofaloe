@@ -1,0 +1,64 @@
+/* ===== Section headers ===== */
+.section-header { margin-bottom: clamp(40px, 5vw, 80px); display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+.section-header h2 em { font-style: italic; }
+
+/* ===== Trust strip (§4) ===== */
+.trust-strip {
+  padding: 24px 0;
+  background: var(--color-paper);
+  border-top: 1px solid rgba(26, 31, 28, 0.08);
+  border-bottom: 1px solid rgba(26, 31, 28, 0.08);
+}
+.trust-strip__grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.trust-strip__item {
+  display: flex; flex-direction: column; gap: 2px;
+  font-family: var(--font-sans);
+}
+.trust-strip__value { font-family: var(--font-serif); font-size: clamp(24px, 2.2vw, 30px); line-height: 1; color: var(--color-ink); }
+.trust-strip__label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-muted); }
+.trust-strip__retailers { font-family: var(--font-serif); font-size: 18px; letter-spacing: 0.08em; color: var(--color-ink); }
+.trust-strip__divider { width: 1px; height: 28px; background: rgba(26, 31, 28, 0.16); }
+
+@media (max-width: 860px) {
+  .trust-strip__grid { justify-content: flex-start; gap: 16px 24px; }
+  .trust-strip__divider { display: none; }
+}
+
+/* ===== Pillar grid (§5) ===== */
+.pillars { padding: var(--section-pad-y) 0; }
+.pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.pillar {
+  display: flex; flex-direction: column;
+  background: var(--color-mist);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.pillar:hover { transform: translateY(-6px); opacity: 1; }
+.pillar__img {
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-mist);
+}
+.pillar__img--foot  { background-image: url('../assets/stills/pillar-foot.jpg'); }
+.pillar__img--body  { background-image: url('../assets/stills/pillar-body.jpg'); }
+.pillar__img--face  { background-image: url('../assets/stills/pillar-face.jpg'); }
+.pillar__img--supps { background-image: url('../assets/stills/pillar-supps.jpg'); }
+
+.pillar__body { padding: 28px 28px 32px; display: flex; flex-direction: column; gap: 10px; }
+.pillar__body h3 { font-size: clamp(26px, 2.2vw, 34px); }
+.pillar__body p { font-size: 14px; color: var(--color-muted); max-width: 30ch; }
+
+@media (max-width: 1060px) { .pillars__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .pillars__grid { grid-template-columns: 1fr; } }
