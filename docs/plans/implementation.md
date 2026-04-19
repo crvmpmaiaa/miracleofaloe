@@ -36,7 +36,7 @@
 │   ├── home.js                                 # Homepage GSAP (Moment 1 + Moment 2), canvas frame-scrub
 │   └── product.js                              # PDP: sticky ATC, before/after slider, FAQ accordion, review filters
 └── assets/
-    ├── brand/                                  # logo.webp, favicon.png (scraped)
+    ├── brand/                                  # logo.png, favicon.png (scraped)
     ├── products/                               # 7 product photos (scraped from miracleofaloe.com)
     ├── stills/                                 # 11 Nano Banana placeholders + README.md with prompts
     ├── video/
@@ -134,14 +134,14 @@ Expected: `git status` clean; `` has empty HTML/CSS/JS folders and populated `as
 ## Task 0.2: Download client brand + product assets from miracleofaloe.com
 
 **Files:**
-- Create: `assets/brand/logo.webp`, `assets/brand/favicon.png`
+- Create: `assets/brand/logo.png`, `assets/brand/favicon.png`
 - Create: `assets/products/foot-repair-front.png`, `foot-repair-back.jpg`, `hand-repair.png`, `aloe-all-over.png`, `miracle-rub.png`, `all-day-moisturizer.jpg`, `facial-gel.jpg`, `ultra-aloe-juice.jpg`
 
 - [ ] **Step 1: Download logo + favicon**
 
 ```bash
 cd "/Users/admin/Desktop/miracleofaloe/assets/brand"
-curl -L -o logo.webp "https://miracleofaloe.com/cdn/shop/files/miracleofaloelogo_compact.webp?v=1738758316"
+curl -L -o logo.png "https://miracleofaloe.com/cdn/shop/files/miracleofaloelogo_compact.webp?v=1738758316"
 curl -L -o favicon.png "https://miracleofaloe.com/cdn/shop/files/MiracleOfAloe-PlantOnly_1_16x16.png?v=1748542098"
 ```
 
@@ -461,7 +461,7 @@ git commit -m "Scaffold design tokens + base styles + smoke-test page"
 <header class="nav" id="nav">
   <div class="nav__inner container">
     <a class="nav__logo" href="/" aria-label="Miracle of Aloe home">
-      <img src="assets/brand/logo.webp" alt="Miracle of Aloe" width="160" height="32">
+      <img src="assets/brand/logo.png" alt="Miracle of Aloe" width="160" height="32">
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#pillars">Foot & Hand</a>
@@ -644,7 +644,7 @@ git commit -m "Add announcement bar + navbar with sticky shadow + cart scaffold"
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="assets/brand/logo.webp" alt="Miracle of Aloe" width="180" height="36">
+        <img src="assets/brand/logo.png" alt="Miracle of Aloe" width="180" height="36">
         <p class="footer__tagline">Forty years of one obsession: one plant, done properly.</p>
       </div>
       <div class="footer__grid">
@@ -2309,7 +2309,7 @@ git commit -m "Add UltraAloe brand-story Moment 2 pinned scroll with 4-step reve
 </div>
 ```
 
-Header / chrome (nav + announcement + drawer + popup + footer) is copied from the homepage — same markup, adjust asset paths with `../` prefix (e.g. `../assets/brand/logo.webp`, `../css/tokens.css`, `js/product.js` instead of `js/home.js`). For link hrefs pointing to homepage sections, use `../#bestsellers` etc.
+Header / chrome (nav + announcement + drawer + popup + footer) is copied from the homepage — same markup, adjust asset paths with `../` prefix (e.g. `../assets/brand/logo.png`, `../css/tokens.css`, `js/product.js` instead of `js/home.js`). For link hrefs pointing to homepage sections, use `../#bestsellers` etc.
 
 - [ ] **Step 1: Create `products/miracle-foot-repair-cream.html`** with full head (same font links as homepage; stylesheet chain: `../css/tokens.css`, `../css/base.css`, `../css/components.css`, `../css/product.css`), the announcement + nav chrome copied from index.html (with `../` path fixes), the PDP hero markup above, and the footer + drawer + popup copied from index.html. Script chain: `../js/main.js` + `../js/product.js`.
 
@@ -3286,7 +3286,7 @@ Add to `<head>` of both pages (after the font links):
 Homepage (`index.html`):
 
 ```html
-<link rel="preload" as="image" href="assets/brand/logo.webp">
+<link rel="preload" as="image" href="assets/brand/logo.png">
 <link rel="preload" as="image" href="assets/products/foot-repair-front.png">
 <link rel="preload" as="image" href="assets/frames/frame_0001.jpg">
 ```
@@ -3294,7 +3294,7 @@ Homepage (`index.html`):
 PDP (`products/miracle-foot-repair-cream.html`):
 
 ```html
-<link rel="preload" as="image" href="../assets/brand/logo.webp">
+<link rel="preload" as="image" href="../assets/brand/logo.png">
 <link rel="preload" as="image" href="../assets/products/foot-repair-front.png">
 ```
 
