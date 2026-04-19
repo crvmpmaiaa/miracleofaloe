@@ -152,8 +152,9 @@
   display: inline-flex;
   gap: 32px;
   white-space: nowrap;
+  /* No padding-left — track starts at viewport-left and loops seamlessly.
+     The <span> list is duplicated in HTML so translateX(0 → -50%) wraps without a gap. */
   animation: marquee 48s linear infinite;
-  padding-left: 100%;
 }
 .benefit-marquee__track .dot { color: var(--color-aloe); }
 @media (prefers-reduced-motion: reduce) {
