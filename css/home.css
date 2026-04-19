@@ -445,6 +445,8 @@
 .process__step .mono { color: var(--color-aloe); }
 .process__media {
   aspect-ratio: 4 / 3;
+  width: 90%;
+  margin: 0 auto;
   border-radius: var(--radius-card);
   background-size: cover;
   background-position: center;
