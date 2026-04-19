@@ -31,11 +31,20 @@
   z-index: 40;
   background: var(--color-paper);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+  transform: translateY(0);
+  transition:
+    transform 420ms var(--ease-out),
+    border-color var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
 }
 .nav.is-scrolled {
   border-bottom-color: rgba(26, 31, 28, 0.06);
   box-shadow: 0 6px 24px -16px rgba(26, 31, 28, 0.15);
+}
+/* Retracted during immersive pinned sections (UltraAloe brand-story scroll). */
+.nav.is-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 .nav__inner {
   display: flex;

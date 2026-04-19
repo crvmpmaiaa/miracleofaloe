@@ -412,9 +412,9 @@
   grid-template-columns: 5fr 7fr;
   align-items: center;
   gap: clamp(32px, 6vw, 96px);
-  /* Extra top padding clears the sticky nav (≈92px) so the "Step 01" label
-     doesn't land behind the navbar's paper-cream background. */
-  padding: clamp(108px, 13vh, 132px) var(--gutter) clamp(40px, 8vh, 80px);
+  /* Nav is hidden during this section (see js/home.js initProcessReveal) so the top
+     doesn't need clearance — symmetric padding uses the recovered space for content. */
+  padding: clamp(40px, 6vh, 72px) var(--gutter);
 }
 .process__header { max-width: 460px; }
 .process__headline { color: var(--color-paper); margin: 20px 0 24px; }

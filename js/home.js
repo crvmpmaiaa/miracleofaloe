@@ -76,10 +76,15 @@
 })();
 
 // ===== Moment 2 — UltraAloe brand story staged reveal =====
+// Vanilla scroll listener (instead of GSAP ScrollTrigger) because it's more deterministic
+// across layout shifts (hero video loading, font swapping, etc.) and never gets stuck on
+// stale cached positions. Reads the section's bounding rect every scroll tick and maps
+// linear scroll progress to one of N steps.
 (function initProcessReveal() {
   const section = document.getElementById('ultraaloe');
+  const nav = document.getElementById('nav');
   if (!section) return;
-  const steps = section.querySelectorAll('.process__step');
+  const steps = Array.from(section.querySelectorAll('.process__step'));
   if (!steps.length) return;
 
   const isDesktop = () => window.matchMedia('(min-width: 961px)').matches;
@@ -87,31 +92,34 @@
   const setActive = (idx) => {
     steps.forEach((el, i) => el.classList.toggle('is-active', i === idx));
   };
+  setActive(0); // default to the first step
 
-  setActive(0); // default
+  // On mobile (<960px) the section un-pins and stacks — no scroll math needed, all steps are always visible via the mobile CSS override.
+  if (!isDesktop()) return;
 
-  const initScroll = () => {
-    if (!window.gsap || !window.ScrollTrigger) { requestAnimationFrame(initScroll); return; }
-    gsap.registerPlugin(ScrollTrigger);
-    if (!isDesktop()) return;
+  let ticking = false;
+  const update = () => {
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const totalDist = Math.max(1, section.offsetHeight - vh);
+    const travelled = Math.max(0, Math.min(totalDist, -rect.top));
+    const progress = totalDist === 0 ? 0 : travelled / totalDist;
+    const idx = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+    setActive(idx);
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.2,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        const idx = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
-        setActive(idx);
-      }
-    });
-
-    // Refresh after initial layout settles (hero video load + first paint can shift things).
-    const refresh = () => ScrollTrigger.refresh();
-    window.addEventListener('load', () => setTimeout(refresh, 120));
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) heroVideo.addEventListener('loadedmetadata', () => setTimeout(refresh, 80));
+    // Hide the nav while the section is actively pinned — gives the step content
+    // ~90px of extra viewport so the full composition fits on laptops.
+    if (nav) {
+      const pinned = rect.top <= 1 && rect.bottom > vh;
+      nav.classList.toggle('is-hidden', pinned);
+    }
   };
-  initScroll();
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  };
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
 })();
