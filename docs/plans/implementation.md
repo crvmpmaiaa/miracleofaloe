@@ -1906,9 +1906,9 @@ Complete file:
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Config: frame count matches FFmpeg extraction (Task 0.3 default = 96 frames @ 24fps × 4s).
+  // Config: frame count matches FFmpeg extraction (Task 0.3 default = 145 frames @ 24fps × 6s).
   // NOTE: update this constant when swapping in the real hero.mp4 — match `ls assets/frames/ | wc -l`.
-  const FRAME_COUNT = 96;
+  const FRAME_COUNT = 145;
   const FRAME_PATH = (i) => `assets/frames/frame_${String(i).padStart(4, '0')}.jpg`;
 
   const frames = new Array(FRAME_COUNT);
