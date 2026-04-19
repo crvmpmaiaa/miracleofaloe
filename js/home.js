@@ -83,3 +83,37 @@
   if (document.readyState === 'complete') start();
   else window.addEventListener('load', start);
 })();
+
+// ===== Moment 2 — UltraAloe brand story staged reveal =====
+(function initProcessReveal() {
+  const section = document.getElementById('ultraaloe');
+  if (!section) return;
+  const steps = section.querySelectorAll('.process__step');
+  if (!steps.length) return;
+
+  const isDesktop = () => window.matchMedia('(min-width: 961px)').matches;
+
+  const setActive = (idx) => {
+    steps.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+  };
+
+  setActive(0); // default
+
+  const initScroll = () => {
+    if (!window.gsap || !window.ScrollTrigger) { requestAnimationFrame(initScroll); return; }
+    gsap.registerPlugin(ScrollTrigger);
+    if (!isDesktop()) return;
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.2,
+      onUpdate: (self) => {
+        const idx = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
+        setActive(idx);
+      }
+    });
+  };
+  initScroll();
+})();

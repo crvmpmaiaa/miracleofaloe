@@ -342,3 +342,77 @@
 @media (max-width: 860px) {
   .hero { height: 260vh; }
 }
+
+/* ===== UltraAloe brand story — Moment 2 ===== */
+.process {
+  background: var(--color-forest);
+  color: var(--color-paper);
+  position: relative;
+}
+.process__pin { height: 500vh; }
+.process__frame {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+  padding: clamp(40px, 8vh, 80px) var(--gutter);
+}
+.process__header { max-width: 460px; }
+.process__headline { color: var(--color-paper); margin: 20px 0 24px; }
+.process__headline em { font-style: italic; color: var(--color-aloe); }
+.process__lede { color: rgba(246, 242, 234, 0.72); max-width: 44ch; }
+
+.process__steps {
+  position: relative;
+  list-style: none; padding: 0; margin: 0;
+  height: 100%;
+}
+.process__step {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms var(--ease-out), transform 800ms var(--ease-out);
+  pointer-events: none;
+}
+.process__step.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.process__step .mono { color: var(--color-aloe); }
+.process__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(246, 242, 234, 0.08);
+}
+.process__media--grow    { background-image: url('../assets/stills/ultraaloe-grow.jpg'); }
+.process__media--harvest { background-image: url('../assets/stills/ultraaloe-harvest.jpg'); }
+.process__media--process { background-image: url('../assets/stills/ultraaloe-process.jpg'); }
+.process__media--bottle  { background-image: url('../assets/stills/ultraaloe-bottle.jpg'); }
+
+.process__step h3 {
+  color: var(--color-paper);
+  font-size: clamp(28px, 3vw, 44px);
+  margin-top: 8px;
+}
+.process__step p { color: rgba(246,242,234,0.72); max-width: 50ch; }
+
+@media (max-width: 960px) {
+  .process__pin { height: auto; }
+  .process__frame {
+    position: static; height: auto;
+    grid-template-columns: 1fr;
+    padding: var(--section-pad-y) var(--gutter);
+  }
+  .process__steps { height: auto; display: flex; flex-direction: column; gap: 56px; }
+  .process__step { position: static; opacity: 1; transform: none; pointer-events: auto; }
+}
