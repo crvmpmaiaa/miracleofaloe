@@ -62,3 +62,42 @@
 
 @media (max-width: 1060px) { .pillars__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px)  { .pillars__grid { grid-template-columns: 1fr; } }
+
+/* ===== Hero product spotlight (§6) ===== */
+.spotlight__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.spotlight__media {
+  aspect-ratio: 4 / 5;
+  background: var(--color-paper);
+  border-radius: var(--radius-card);
+  display: grid; place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.spotlight__media::before {
+  content: "";
+  position: absolute; inset: auto 10% 0 10%; height: 22%;
+  background: radial-gradient(ellipse at center, rgba(26,31,28,0.14), transparent 60%);
+  filter: blur(8px);
+}
+.spotlight__media img { max-width: 72%; height: auto; position: relative; z-index: 1; }
+
+.spotlight__body h2 { margin-top: 12px; margin-bottom: 22px; }
+.spotlight__body h2 em { font-style: italic; color: var(--color-jungle); }
+.spotlight__benefits { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 28px 0 36px; padding-left: 0; }
+.spotlight__benefits li { font-size: 15px; padding-left: 24px; position: relative; color: var(--color-ink); }
+.spotlight__benefits li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 12px; height: 2px; background: var(--color-aloe);
+}
+.spotlight__benefits strong { font-weight: 600; }
+.spotlight__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .spotlight__grid { grid-template-columns: 1fr; gap: 36px; }
+  .spotlight__media { aspect-ratio: 1; }
+}
