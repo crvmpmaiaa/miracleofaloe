@@ -402,9 +402,52 @@
   .hero__inner, .hero__scrim, .hero__scrollhint { transition: none; }
 }
 
-@media (max-width: 640px) {
-  .hero__inner { max-width: 100%; }
-  .hero h1 { font-size: clamp(36px, 10vw, 56px); }
+/* ===== Mobile hero: stack video on top of text ===== */
+/* The 16:9 hero video gets cropped to a narrow centre strip under `object-fit: cover` on portrait
+   viewports. Rather than fight that, below 768px we restack: video fills the width at its native
+   16:9 aspect ratio (no crop), text drops below on a solid forest-green block. No scrim, no reveal
+   delay — text is immediately visible because it's no longer overlaying video. */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-forest);
+  }
+  .hero__video {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--color-paper);
+    z-index: auto;
+  }
+  .hero__scrim { display: none; }
+  .hero__overlay {
+    position: static;
+    height: auto;
+    padding: clamp(28px, 7vw, 44px) clamp(20px, 5vw, 28px) clamp(40px, 10vw, 64px);
+    align-items: stretch;
+    justify-content: stretch;
+    background: var(--color-forest);
+  }
+  .hero__overlay .container { display: block; padding: 0; }
+  /* Text is always visible on mobile — no 2.4s fade-in needed since it isn't fighting the video */
+  .hero__inner {
+    max-width: 100%;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero h1 { font-size: clamp(36px, 9vw, 54px); text-shadow: none; max-width: 14ch; }
+  .hero__actions { margin-top: 24px; }
+  .hero__actions .btn { padding: 13px 22px; font-size: 13.5px; }
+  .hero__scrollhint { display: none; }
+  /* Reduced-motion fallback: hide the background still, forest block takes over */
+  .hero.is-reduced { background-image: none; }
 }
 
 /* ===== UltraAloe brand story — Moment 2 ===== */
